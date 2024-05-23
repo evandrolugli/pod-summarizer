@@ -10,7 +10,6 @@ import { fetchFile } from '@ffmpeg/util';
 export function VideoInputForm (){
     const [videoFile, setVideoFile] = useState<File | null>(null)
     const promptInputRef = useRef<HTMLTextAreaElement>(null)
-
     
     function handleFileSelected(event: ChangeEvent<HTMLInputElement>) {
         const { files } = event.currentTarget
