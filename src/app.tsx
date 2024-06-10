@@ -7,8 +7,15 @@ import { Slider } from './components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
 import { VideoInputForm } from './components/video-input-form';
 import { PromptSelect } from './components/prompt-select';
+import { useState } from 'react';
 
 export function App() {
+  const [temperature, setTemperature] = useState(0.5)
+
+  function handlePromptSelected(template: string){
+    console.log(template)
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <div className="px-6 py-3 flex items-center justify-between border-b">
@@ -52,7 +59,7 @@ export function App() {
           <form className="space-y-6">
           <div className="space-y-2">
               <Label>Prompt</Label>
-              <PromptSelect />
+              <PromptSelect onPromptSelected={handlePromptSelected} />
           </div>
 
 
@@ -78,6 +85,8 @@ export function App() {
                 min={0}
                 max={1}
                 step={0.1}
+                value={[temperature]}
+                onValueChange={value => setTemperature(value[0])}
               />
               <span className="block text-xs text-muted-foreground italic leading-relaxed">
                 Setting a higher maximum value tends to produce more creative results
